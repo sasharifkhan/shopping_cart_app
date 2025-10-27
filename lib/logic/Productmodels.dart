@@ -5,9 +5,16 @@ class Productmodels {
   final String? title;
   final String? body;
 
-  Productmodels(this.userId, {required this.id, required this.title, required this.body});
+  Productmodels({required this.userId, required this.id, required this.title, required this.body});
 
-  
+
+  factory Productmodels.fromJson(Map<String, dynamic> json) => Productmodels(
+    userId: json['userId'], 
+    id: json['id'], 
+    title: json['title'], 
+    body: json['body']
+    );
+
 
   
 }

@@ -35,7 +35,10 @@ class _CartlistState extends State<Cartlist> {
 
         );
       },),
-      bottomNavigationBar: Container(height: 100,width: double.infinity,color: Colors.white,child: ElevatedButton(style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.all(Radius.zero)), backgroundColor: Colors.green), onPressed: (){}, child: Text("Place Order",style: TextStyle(color: Colors.white,fontSize: 28),)),)
+      bottomNavigationBar: Container(height: 100,width: double.infinity,color: Colors.white,child: ElevatedButton(style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.all(Radius.zero)), backgroundColor: Colors.green), onPressed: (){}, child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Text("Total Amount: 10000 USDT",style: TextStyle(color: Colors.white,fontSize: 18),),
+        Text("Place Order",style: TextStyle(color: Colors.white,fontSize: 28),)
+      ],)),)
     );
   }
 }
