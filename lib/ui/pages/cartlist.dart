@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+class Cartlist extends StatefulWidget {
+  const Cartlist({super.key});
+
+  @override
+  State<Cartlist> createState() => _CartlistState();
+}
+
+class _CartlistState extends State<Cartlist> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black87,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: BackButton(color: Colors.black,),
+        title: Text("Cart List",style: TextStyle(color: Colors.black,fontSize: 36),),
+      ),
+      body: ListView.builder(itemCount: 15, itemBuilder: (context, index) {
+        return ListTile(
+          horizontalTitleGap: 30,
+          shape: Border.symmetric(horizontal: BorderSide(width: 3)),
+          trailing: SizedBox( height: 100, width: 100,
+            child: Row(children: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.remove,color: Colors.white)),
+              Text("1",style: TextStyle(fontSize: 15,color: Colors.white),),
+              IconButton(onPressed: (){}, icon: Icon(Icons.add,color: Colors.white)),
+            ],),
+          ),
+          title: Text("iPhone 13 Pro Max",style: TextStyle(color: Colors.white),),
+          subtitle: Text("8/256 GB Varient\n1000 USDT",style: TextStyle(color: Colors.white),),
+          leading: Image(image: NetworkImage("https://i5.walmartimages.com/asr/9ebc1836-9bd3-407f-898f-701f43434d4a.7eb2254059c5f901761dc3d28fb002e8.jpeg")),
+
+        );
+      },),
+      bottomNavigationBar: Container(height: 100,width: double.infinity,color: Colors.white,child: ElevatedButton(style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.all(Radius.zero)), backgroundColor: Colors.green), onPressed: (){}, child: Text("Place Order",style: TextStyle(color: Colors.white,fontSize: 28),)),)
+    );
+  }
+}
