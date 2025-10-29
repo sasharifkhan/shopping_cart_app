@@ -11,11 +11,7 @@ class Productlist extends StatefulWidget {
 }
 
 class _ProductlistState extends State<Productlist> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<Productlistprovider>().fetchdata();
-  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -35,13 +31,17 @@ class _ProductlistState extends State<Productlist> {
           )
         ],
       ),
-      body: ListView.builder(itemCount: 10, itemBuilder: (context, index) {
+      body: Consumer<Productlistprovider>(builder: (ctx, provider, child) {
+        ctx.read<Productlistprovider>().fetchdata();
+        List productlist =  ctx.watch<Productlistprovider>().Productlist();
+
+        return ListView.builder(itemCount: productlist.length, itemBuilder: (context, index) {
         return SizedBox( width: 50, height: 200,
-          child: Card(margin: EdgeInsets.only(top: 5), color: Colors.white, child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          child: Card(margin: EdgeInsets.only(top: 5), color: Colors.white, child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Image(image: NetworkImage('https://i5.walmartimages.com/asr/9ebc1836-9bd3-407f-898f-701f43434d4a.7eb2254059c5f901761dc3d28fb002e8.jpeg'),height: 150,width: 150,),
             Column( mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('iPhone 13 Pro Max',style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold),textAlign: TextAlign.left,),
-            Text('8/256 GB USA Varient',style: TextStyle(color: Colors.black),),
+            Text(productlist[index]['title'], style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(productlist[index]['body'],style: TextStyle(color: Colors.black),),
             Text('1000 USDT',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
             SizedBox(height: 30,),
             ElevatedButton(onPressed: (){}, child: Text("Add to Cart"))
@@ -49,6 +49,7 @@ class _ProductlistState extends State<Productlist> {
             
           ],),),
         );
+      },);
       },),
     );
   }
