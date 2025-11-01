@@ -32,7 +32,7 @@ class _CartlistState extends State<Cartlist> {
               IconButton(onPressed: (){
                 ctx.read<Productlistprovider>().removecartproduct(cartlist[index]);
               }, icon: Icon(Icons.remove,color: Colors.white)),
-              Text("1",style: TextStyle(fontSize: 15,color: Colors.white),),
+              Text("${cartlist[index]['quantity'].toString()}",style: TextStyle(fontSize: 15,color: Colors.white),),
               IconButton(onPressed: (){
                 ctx.read<Productlistprovider>().addtocartlist(cartlist[index]);
               }, icon: Icon(Icons.add,color: Colors.white)),

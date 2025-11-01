@@ -22,6 +22,7 @@ class Productlistprovider extends ChangeNotifier {
         var random = Random();
         _productlist = jsondata.map((item) {
           item['price'] = (random.nextInt(100)+10);
+          item['quantity'] = 1;
           return item;
         }).toList();
         }
@@ -30,7 +31,10 @@ class Productlistprovider extends ChangeNotifier {
   }
 
   addtocartlist(productlist){
+    if (_cartlist.contains(productlist)){
+    } else {
     _cartlist.add(productlist);
+    }
     notifyListeners();
   }
 
