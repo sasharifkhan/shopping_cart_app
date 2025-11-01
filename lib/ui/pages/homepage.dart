@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_cart_app/logic/Productlistprovider.dart';
 import 'package:shopping_cart_app/ui/pages/productlist.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Productlistprovider>(listen: false, context).fetchdata();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

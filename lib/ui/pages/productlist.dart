@@ -32,9 +32,9 @@ class _ProductlistState extends State<Productlist> {
         ],
       ),
       body: Consumer<Productlistprovider>(builder: (ctx, provider, child) {
-        ctx.read<Productlistprovider>().fetchdata();
-        List productlist =  ctx.watch<Productlistprovider>().Productlist();
 
+        List productlist =  ctx.watch<Productlistprovider>().Productlist();
+        
         return ListView.builder(itemCount: productlist.length, itemBuilder: (context, index) {
         return SizedBox( width: 50, height: 200,
           child: Card(margin: EdgeInsets.only(top: 5), color: Colors.white, child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -42,7 +42,7 @@ class _ProductlistState extends State<Productlist> {
             Column( mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(productlist[index]['title'].length > 30 ? productlist[index]['title'].substring(0, 30) + '...': productlist[index]['title'],style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),maxLines: 1,overflow: TextOverflow.ellipsis,),
             Text(productlist[index]['body'], overflow: TextOverflow.ellipsis, maxLines: 2, style: TextStyle(color: Colors.black),),
-            Text('1000 USDT',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+            Text('${productlist[index]['price'].toString()} USD',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
             SizedBox(height: 30,),
             ElevatedButton(onPressed: (){
               ctx.read<Productlistprovider>().addtocartlist(productlist[index]);
