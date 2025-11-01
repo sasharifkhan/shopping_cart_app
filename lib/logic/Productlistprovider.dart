@@ -39,8 +39,11 @@ class Productlistprovider extends ChangeNotifier {
     notifyListeners();
   }
   totalamount(List cartlist){
-    cartlist;
-    return 100;
-  }
+    int total = 0;
+    for (var item in cartlist) {
+      total += item['price'] as int;
+    }
+    return total;
+}
 
 }
