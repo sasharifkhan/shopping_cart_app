@@ -40,13 +40,14 @@ class _ProductlistState extends State<Productlist> {
           child: Card(margin: EdgeInsets.only(top: 5), color: Colors.white, child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Image(image: NetworkImage('https://i5.walmartimages.com/asr/9ebc1836-9bd3-407f-898f-701f43434d4a.7eb2254059c5f901761dc3d28fb002e8.jpeg'),height: 150,width: 150,),
             Column( mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(productlist[index]['title'], style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
-            Text(productlist[index]['body'],style: TextStyle(color: Colors.black),),
+            Text(productlist[index]['title'].length > 30 ? productlist[index]['title'].substring(0, 30) + '...': productlist[index]['title'],style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),maxLines: 1,overflow: TextOverflow.ellipsis,),
+            Text(productlist[index]['body'], overflow: TextOverflow.ellipsis, maxLines: 2, style: TextStyle(color: Colors.black),),
             Text('1000 USDT',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
             SizedBox(height: 30,),
-            ElevatedButton(onPressed: (){}, child: Text("Add to Cart"))
+            ElevatedButton(onPressed: (){
+              ctx.read<Productlistprovider>().addtocartlist(productlist[index]);
+            }, child: Text("Add to Cart"))
             ],),
-            
           ],),),
         );
       },);

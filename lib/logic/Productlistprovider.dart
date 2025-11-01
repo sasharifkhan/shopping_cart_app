@@ -6,6 +6,9 @@ import 'package:http/http.dart' as http;
 class Productlistprovider extends ChangeNotifier {
 
   List<dynamic> _productlist = [];
+  List<dynamic> _cartlist = [];
+
+  Cartlist()=> _cartlist;
 
   Productlist()=> _productlist;
   
@@ -21,4 +24,15 @@ class Productlistprovider extends ChangeNotifier {
       return null;
 
   }
+
+  addtocartlist(productlist){
+    _cartlist.add(productlist);
+    notifyListeners();
+  }
+
+  removecartproduct(cartlist){
+    _cartlist.remove(cartlist);
+    notifyListeners();
+  }
+
 }
